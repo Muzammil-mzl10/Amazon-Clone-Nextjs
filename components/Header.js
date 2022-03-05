@@ -65,7 +65,7 @@ const Header = () => {
         <p className="link hidden lg:inline-flex">Shopper Toolkit</p>
         <p className="link hidden lg:inline-flex">Health & Personal Care </p>
         
-        </div>
+      </div>
       </header>
     </>
   );

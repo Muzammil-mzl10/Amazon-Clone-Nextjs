@@ -5,15 +5,17 @@ const ProductFeed = ({ products }) => {
   //   console.log(products);
   return (
     <>
+
+    <div>
       <div
         className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 
       md:-mt-52 mx-auto"
       >
         {products
-          .slice(0, 4)
+.slice(0,4)
           .map(({ id, title, price, description, category, image, rating }) => (
             <Products
-              key={id}
+              key={image}
               title={title}
               price={price}
               description={description}
@@ -34,8 +36,8 @@ const ProductFeed = ({ products }) => {
             .map(
               ({ id, title, price, description, category, image, rating }) => (
                 <Products
-                  key={id}
-                  id={id}
+                  key={image}
+                 
                   title={title}
                   price={price}
                   description={description}
@@ -50,8 +52,8 @@ const ProductFeed = ({ products }) => {
           .slice(5, products.length)
           .map(({ id, title, price, description, category, image, rating }) => (
             <Products
-              key={id}
-              id={id}
+              key={image}
+            
               title={title}
               price={price}
               description={description}
@@ -60,6 +62,7 @@ const ProductFeed = ({ products }) => {
               rating={rating.rate}
             />
           ))}
+      </div>
       </div>
     </>
   );

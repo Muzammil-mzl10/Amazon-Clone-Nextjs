@@ -49,7 +49,7 @@ const Checkout = () => {
           {items.length > 0 && (
             <>
               <h2 className="whitespace-nowrap">Subtotal
-              {items.length} items):
+              {items.length} items:
               <span className="font-bold">
 
                 <Currency

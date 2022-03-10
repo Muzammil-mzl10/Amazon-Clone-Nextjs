@@ -15,7 +15,7 @@ const CheckoutProduct = ({
   prime
 }) => {
 
-    const [rating1, setrating] = useState(Math.floor(rating + 0.1));
+    // const [rating1, setrating] = useState(Math.floor(rating + 0.1));
    
     
     const dispatch = useDispatch();
@@ -32,8 +32,10 @@ const CheckoutProduct = ({
    }
     dispatch(addToBasket(product))
   }
+
   const removeItemFromBasket = ()=>{
-      dispatch(removeFromBasket(id))
+    console.log({id})
+      dispatch(removeFromBasket({id}))
   }
     
   return (
@@ -44,7 +46,7 @@ const CheckoutProduct = ({
         <div className="col-span-3 mx-5">
           <p>{title}</p>
           <div className="flex">
-            {Array(rating1)
+            {Array(rating)
               .fill()
               .map((_, i) => (
                 <StarIcon key={i} className="h-5 text-yellow-500" />

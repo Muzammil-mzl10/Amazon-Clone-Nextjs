@@ -30,7 +30,7 @@ const Products = ({
       rating1,
       prime
     };
-
+console.log(product);
     dispatch(addToBasket(product));
   };
 

@@ -4,12 +4,12 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
 import CheckoutProduct from "../components/CheckoutProduct";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react"
 import Currency from "react-currency-formatter";
 
 const Checkout = () => {
   const items = useSelector(selectItems);
-  const [session] = useSession();
+  const { data: session, status } = useSession()
   
   return (
     <>

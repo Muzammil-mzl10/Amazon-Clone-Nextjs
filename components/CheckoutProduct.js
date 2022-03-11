@@ -55,7 +55,7 @@ const CheckoutProduct = ({
 
           <p className="text-xs my-2 line-clamp-3">{description}</p>
 
-          <Currency quantity={price} currency="GBP" />
+          <Currency quantity={price} currency="usd" />
 
           {prime && (
               <div className="flex items-center space-x-2">

@@ -57,7 +57,7 @@ console.log(product);
         <p className="text-xs my-2 line-clamp-2">{description}</p>
 
         <div className="mb-5">
-          <Currency quantity={price} currency="GBP" />
+          <Currency quantity={price} currency="usd" />
         </div>
         {prime && (
           <div className="flex items-center space-x-2 -mt-5">

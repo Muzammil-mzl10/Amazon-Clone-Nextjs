@@ -6,12 +6,31 @@ import { selectItems, selectTotal } from "../slices/basketSlice";
 import CheckoutProduct from "../components/CheckoutProduct";
 import { useSession } from "next-auth/react";
 import Currency from "react-currency-formatter";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
 
+const StripePromise = loadStripe(process.env.stripe_public_key);
 
 const Checkout = () => {
   const items = useSelector(selectItems);
   const { data: session, status } = useSession();
   const total = useSelector(selectTotal);
+
+  const createCheckOutSession = async () => {
+    const stripe = await StripePromise;
+
+    const checkoutSession = await axios.post("/api/create-checkout-session", {
+      items: items,
+      email: session.user.email,
+    });
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+    if (result.error) {
+      alert(result.error.message);
+    }
+  };
 
   return (
     <>
@@ -53,16 +72,16 @@ const Checkout = () => {
             {items.length > 0 && (
               <>
                 <h2 className="whitespace-nowrap">
-                  Subtotal {' '}
-                 ({items.length}) items:
-                  <span className="font-bold">  {' '}
-                    <Currency
-                      quantity={total}
-                      currency="GBP"
-                    />
+                  Subtotal ({items.length}) items:
+                  <span className="font-bold">
+                    {" "}
+                    <Currency quantity={total} currency="usd" />
                   </span>
                 </h2>
                 <button
+                  onClick={createCheckOutSession}
+                  disabled={!session}
+                  role="link"
                   className={`button mt-2  ${
                     !session &&
                     `from-gray-300 to-gray-500 border-gray-200 text-gray-300 cursor-not-allowed`
